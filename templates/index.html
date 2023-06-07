@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chatbot Web App</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="chat-container">
+            <h1>Chatbot Web App</h1>
+            <div class="chat-history" id="chat-history">
+                {% for message in chat_history %}
+                    {% if message['sender'] == 'user' %}
+                        <p class="user-message">User: {{ message['content'] }}</p>
+                    {% else %}
+                        <p class="bot-message">Chatbot: {{ message['content'] }}</p>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            <form action="/" method="POST" id="chat-form">
+                <div class="user-input-container">
+                    <input type="text" name="user_input" id="user-input" placeholder="Enter your message" autocomplete="off" required class="user-input">
+                    <button type="submit" class="send-button">Send</button>
+                </div>
+            </form>
+        </div>
+        <div class="tasks-container">
+            <div class="todo-box">
+                <h2>To Do</h2>
+                <ul>
+                    {% for task in tasks %}
+                        <li>{{ task }}</li>
+                    {% endfor %}
+                </ul>
+                <form action="/" method="POST" id="add-task-form">
+                    <input type="text" name="add_task" id="add-task-input" placeholder="Add a task" autocomplete="off" required>
+                    <button type="submit" class="add-task-button">Add</button>
+                </form>
+            </div>
+            <div class="completed-box">
+                <h2>Completed</h2>
+                <ul>
+                    {% for task in completed_tasks %}
+                        <li>{{ task }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="your-javascript-file.js"></script>
+</body>
+</html>
